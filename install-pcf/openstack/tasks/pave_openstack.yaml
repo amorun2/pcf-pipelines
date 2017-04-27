@@ -74,6 +74,9 @@ run:
       openstack router create $ROUTER
       neutron router-gateway-set $ROUTER $EXTERNAL_NETWORK
       openstack router add subnet $ROUTER ${INFRA_NETWORK}-subnet
+      openstack router add subnet $ROUTER ${ERT_NETWORK}-subnet
+      openstack router add subnet $ROUTER ${SERVICES_NETWORK}-subnet
+      openstack router add subnet $ROUTER ${SERVICESOD_NETWORK}-subnet
       check_rc $?
     }
 
@@ -83,10 +86,6 @@ run:
       echo -n "Creating router $ROUTER: "
       openstack router create $ROUTER
       openstack router add subnet $ROUTER ${INFRA_NETWORK}-subnet
-      openstack router add subnet $ROUTER ${ERT_NETWORK}-subnet
-      openstack router add subnet $ROUTER ${SERVICES_NETWORK}-subnet
-      openstack router add subnet $ROUTER ${SERVICESOD_NETWORK}-subnet
-      check_rc $?
     }
 
     function create_secgroup() {
@@ -129,5 +128,5 @@ run:
     create_private_network $SERVICES_NETWORK $SERVICES_SUBNET
     create_private_network $SERVICESOD_NETWORK $SERVICESOD_SUBNET
     create_admin_router $ADMIN_ROUTER
-    create_backend_router $BACKEND_ROUTER
+    #create_backend_router $BACKEND_ROUTER
     create_secgroup
