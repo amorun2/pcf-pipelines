@@ -4,7 +4,7 @@ platform: linux
 image_resource:
  type: docker-image
  source:
-   repository: cloudfoundry/cflinuxfs2
+   repository: pivotalservices/openstack-tools
 
 params: 
   EXTERNAL_NETWORK:
@@ -39,10 +39,6 @@ run:
     echo "$PRE_OS_CACERT" > /ca.crt
     export OS_CACERT='/ca.crt'
 
-    apt-get update
-    apt-get -y install python-pip python3-dev python-dev
-    pip install python-openstackclient pytz python-neutronclient
-    
     function check_rc() {
     
       # Check the return code of previous command.
@@ -130,3 +126,6 @@ run:
     create_admin_router $ADMIN_ROUTER
     #create_backend_router $BACKEND_ROUTER
     create_secgroup
+
+    pivnet-cli --version
+    om-tool --version
