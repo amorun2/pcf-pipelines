@@ -11,6 +11,12 @@ resources:
   source:
     uri: http://github.com/pivotalservices/pcf-pipelines.git
     branch: master
+- name: pivnet-opsman-product
+  type: pivnet
+  source:
+    api_token: {{pivnet_api_token}}
+    product_slug: ops-manager
+    product_version: 1\.10\..*
 
 jobs:
   - name: pave-iaas
@@ -42,3 +48,26 @@ jobs:
         OS_USERNAME: {{os_username}}
         PRE_OS_CACERT: {{pre_os_cacert}}
         OS_INTERFACE: {{os_interface}}
+
+  - name: install-opsmgr 
+    plan:
+    - get: pivnet-opsman-product
+      params:  
+        globs:
+        - "*.raw"
+      trigger: true
+    - task: deploy-opsman
+      file: pcf-pipelines/install-pcf/openstack/tasks/upload-product-and-stemcell.yml
+      params:
+        OS_PROJECT_ID: {{os_project_id}}
+        OS_REGION_NAME: {{os_region_name}}
+        OS_USER_DOMAIN_NAME: {{os_user_domain_name}}
+        OS_PROJECT_NAME: {{os_project_name}}
+        OS_IDENTITY_API_VERSION: {{os_identity_api_version}}
+        OS_PASSWORD: {{os_password}}
+        OS_AUTH_URL: {{os_auth_url}}
+        OS_USERNAME: {{os_username}}
+        PRE_OS_CACERT: {{pre_os_cacert}}
+        OS_INTERFACE: {{os_interface}}
+        
+

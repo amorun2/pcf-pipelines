@@ -25,3 +25,6 @@ os_auth_url:
 os_username:
 os_interface:
 pre_os_cacert:
+
+## Pivnet Requirements
+pivnet_api_token:
