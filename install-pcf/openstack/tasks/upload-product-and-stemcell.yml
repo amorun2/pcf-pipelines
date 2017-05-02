@@ -29,4 +29,4 @@ inputs:
   - name: pcf-pipelines
 
 run:
-  path: pcf-pipelines/openstack/tasks/upload-product-and-stemcell.sh
+  path: pcf-pipelines/install-pcf/openstack/tasks/upload-product-and-stemcell.sh
