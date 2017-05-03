@@ -17,6 +17,7 @@ function check_for_opsman() {
   VERSION=$(echo $OPSMAN_FILE | perl -lane "print \$1 if (/pcf-openstack-(.*?).raw/)")
   IMG_NAME="$OPS_MGR_IMG_NAME-$VERSION"
 
+  echo "Looking for $IMG_NAME in glance."
   openstack image list | grep -q $IMG_NAME
   if [ $? == 0 ]; then
     echo "$IMG_NAME is already installed."
