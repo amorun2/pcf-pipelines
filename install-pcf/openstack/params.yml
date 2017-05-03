@@ -28,3 +28,6 @@ pre_os_cacert:
 
 ## Pivnet Requirements
 pivnet_api_token:
+
+## What to name the image in glance
+ops_mgr_img_name:

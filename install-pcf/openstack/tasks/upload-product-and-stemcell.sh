@@ -1,22 +1,29 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 
+# If we are using a self signed SSL certificate,
+# export the location so the openstack-cli uses it.
+function source_certs() {
+  if [ -n "$PRE_OS_CACERT" ]; then
+    echo "$PRE_OS_CACERT" > /ca.crt
+    export OS_CACERT='/ca.crt'
+  fi
+}
 
-# Necessary to talk to openstack API with self-signed certs.
-echo "$PRE_OS_CACERT" > /ca.crt
-export OS_CACERT='/ca.crt'
+function check_for_opsman() {
 
+  OPSMAN_FILE=$(find pivnet-opsman-product/ -name '*.raw')
+  if [ -z $OPSMAN_FILE ]; then
+    echo "FATAL: We didn't get an opsman image from Pivnet."
+    exit 1
+  fi
 
-# /tmp/build/get/pcf-openstack-1.10.4.raw
-OPSMAN_IMAGE=$(find pivnet-opsman-product/ -name '*.raw')
+  VERSION=$(echo $OPSMAN_FILE | perl -lane "print \$1 if (/pcf-openstack-(.*?).raw/)")
+  IMG_NAME="$OPS_MGR_IMG_NAME-$VERSION"
+  echo "Installing: $IMG_NAME"
+     
+  openstack image create --disk-format qcow2 --container-format bare \
+    --private --file ./$OPSMAN_FILE $IMG_NAME 
+}
 
-echo "Using $OPSMAN_IMAGE"
-#openstack image create --file $OPSMAN_IMAGE \
-
-echo "Openstack Image list:"
-openstack image list
-
-
-# TODO - figure out where the opsman binary lives right now
-
-# TODO - use some cli to upload that binary into OpenStack
-
+source_certs
+check_for_opsman
