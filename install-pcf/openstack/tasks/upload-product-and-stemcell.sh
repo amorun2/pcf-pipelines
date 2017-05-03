@@ -18,7 +18,7 @@ function check_for_opsman() {
   IMG_NAME="$OPS_MGR_IMG_NAME-$VERSION"
 
   openstack image list | grep -q $IMG_NAME
-  if [ $? != 0 ]; then
+  if [ $? == 0 ]; then
     echo "$IMG_NAME is already installed."
     exit 0
   fi
