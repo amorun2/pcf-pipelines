@@ -18,7 +18,7 @@ function check_for_opsman() {
   IMG_NAME="$OPS_MGR_IMG_NAME-$VERSION"
 
   echo "Looking for $IMG_NAME in glance."
-  openstack image list | grep $IMG_NAME
+  #openstack image list | grep $IMG_NAME
 
   echo "Installing: $IMG_NAME"
      
