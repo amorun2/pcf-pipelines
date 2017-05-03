@@ -1,13 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 # If we are using a self signed SSL certificate,
 # export the location so the openstack-cli uses it.
-function source_certs() {
-  if [ -n "$PRE_OS_CACERT" ]; then
-    echo "$PRE_OS_CACERT" > /ca.crt
-    export OS_CACERT='/ca.crt'
-  fi
-}
+
+echo "$PRE_OS_CACERT" > /ca.crt
+export OS_CACERT='/ca.crt'
 
 function check_for_opsman() {
 
@@ -25,5 +22,4 @@ function check_for_opsman() {
     --private --file ./$OPSMAN_FILE $IMG_NAME 
 }
 
-source_certs
 check_for_opsman
