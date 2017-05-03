@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # If we are using a self signed SSL certificate,
 # export the location so the openstack-cli uses it.
@@ -18,7 +18,7 @@ function check_for_opsman() {
   IMG_NAME="$OPS_MGR_IMG_NAME-$VERSION"
 
   echo "Looking for $IMG_NAME in glance."
-  #openstack image list | grep $IMG_NAME
+  openstack image list | grep $IMG_NAME
 
   echo "Installing: $IMG_NAME"
      
