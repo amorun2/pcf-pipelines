@@ -22,5 +22,4 @@ function check_for_opsman() {
     --private --file ./$OPSMAN_FILE $IMG_NAME 
 }
 
-#check_for_opsman
-echo "Hello World."
+check_for_opsman
