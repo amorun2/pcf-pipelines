@@ -25,7 +25,6 @@ params:
   OM_IP:
 
 inputs:
-  - name: pivnet-opsman-product
   - name: pcf-pipelines
 
 run:
