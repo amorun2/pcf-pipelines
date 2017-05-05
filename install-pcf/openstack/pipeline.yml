@@ -74,6 +74,12 @@ jobs:
 
   - name: boot-opsman
     plan:
+    - get: pivnet-opsman-product
+      passed: [install-opsmgr]
+      params:
+        globs:
+        - "*.raw"
+      trigger: false
     - get: pcf-pipelines
     - task: boot-opsman
       file: pcf-pipelines/install-pcf/openstack/tasks/boot-opsman.yml

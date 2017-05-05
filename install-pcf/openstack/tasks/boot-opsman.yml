@@ -26,6 +26,7 @@ params:
 
 inputs:
   - name: pcf-pipelines
+  - name: pivnet-opsman-product
 
 run:
   path: pcf-pipelines/install-pcf/openstack/tasks/boot-opsman.sh
