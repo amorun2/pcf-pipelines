@@ -75,9 +75,6 @@ jobs:
   - name: boot-opsman
     plan:
     - get: pcf-pipelines
-    - get: pivnet-opsman-product
-      trigger: false
-
     - task: boot-opsman
       file: pcf-pipelines/install-pcf/openstack/tasks/boot-opsman.yml
       params:

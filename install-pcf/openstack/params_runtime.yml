@@ -1,0 +1,51 @@
+# These should probably be static except for the 'external-net'
+# external_network refers to the network where I request floating IP's.
+external_network: external-net
+infra_network: infra
+infra_subnet: 10.1.0.0/24
+ert_network: ert
+ert_subnet: 10.2.0.0/24
+services_network: services
+services_subnet: 10.3.0.0/24
+servicesod_network: services_od
+servicesod_subnet: 10.4.0.0/24
+admin_router: admin_router
+backend_router: backend_router
+
+# These are simply the project users credentials, downloaded from Horizon.
+# The pre_os_cacert is the root CA cert, only needed if the openstack API's
+# are fronted by a self-signed SSL certificate.
+os_project_id: 7cff2fd9eeda4e2d82a3dac2f0b6324c
+os_region_name: RegionOne
+os_user_domain_name: Default
+os_project_name: joey
+os_identity_api_version: 3
+os_password: alwaysbekind
+os_auth_url: https://sc2-host-b104-45.haas-98.pez.pivotal.io:5000/v3
+os_username: joey
+os_interface: public
+pre_os_cacert: |
+  -----BEGIN CERTIFICATE-----
+  MIIDJDCCAgygAwIBAgIJAJ9Sb8ICCTXwMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV
+  BAMMBlJQQyBDQTAeFw0xNzA0MjYxNTAxNDFaFw0yNzA0MjQxNTAxNDFaMBExDzAN
+  BgNVBAMMBlJQQyBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMOM
+  rJhsQWfjD5yeLPEsU8ILxN5Ez7e21MEV+dI6zROZiUSfXD6MEFy6i2SRNNJh6vs8
+  v4ZNdyRkB+T9PSBbA3c1VCmp6wDQhSE40MyxwYKMzCk7qDzwgv3yWeSYwdys7/U9
+  5IAs4Pl2xHwXuNphBq0/GpMkkxFVQjTZEN3AS6bFbiDLB4+nWVVgQrENE/xT/aeL
+  eUWJI0Ox/cYnAZ0kxhcTfDJ+XJOEKZlb+KO5p1OGUnZw8hXmCXYdjvp6PuFvycle
+  EuX1rIFeYNrZbgbf88ZarWF2Ydl3OoReBUK3axS4AZtkT1PvvE5pEOBMW87d5NKZ
+  EmHG1ExX3dXKCdfC1bECAwEAAaN/MH0wHQYDVR0OBBYEFPLhxsESyEmibUagreWS
+  sH9yeCvyMEEGA1UdIwQ6MDiAFPLhxsESyEmibUagreWSsH9yeCvyoRWkEzARMQ8w
+  DQYDVQQDDAZSUEMgQ0GCCQCfUm/CAgk18DAMBgNVHRMEBTADAQH/MAsGA1UdDwQE
+  AwIBBjANBgkqhkiG9w0BAQsFAAOCAQEAPmZsXwiyHCPVdkYs3sZNPrDGnG3Nxetn
+  2x1Ic92087RQVi0m3I/1lsWz4NkFJ9Hagr3V88yRpnPiD39wsznVCUGAhkseKlRk
+  13gjNgtkvX9dZvROreCaoc3FGlsZ/HBXOXGu7tWMCjyICNm4YAbRpxmg+Efeyuhi
+  vDHdmugcwBqK/aS73VhRmdeUp8CEv5NxpFoMIp86VnQYrQsTT3FMpaN6cvq52a0T
+  8sx7Tlq1Bj853TzsFSVH23WocFhyVqUvs68nFOBXWZ6nn6alc7c6E2wyc90Q2m/w
+  1ch3buERAAJevk5Fqrjs5lhei1jtwuu3z9UROKragcZRnhA6tF9fFA==
+  -----END CERTIFICATE-----
+
+pivnet_api_token: tgJX_jBgf_V1jTSgb9Y9
+
+## What to name the image in glance
+ops_mgr_img_name: pcf-openstack
