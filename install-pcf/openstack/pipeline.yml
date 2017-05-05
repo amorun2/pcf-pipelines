@@ -75,6 +75,7 @@ jobs:
   - name: boot-opsman
     plan:
     - get: pcf-pipelines
+    - get: pivnet-opsman-product
       trigger: false
 
     - task: boot-opsman

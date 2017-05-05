@@ -32,4 +32,3 @@ inputs:
 run:
   path: pcf-pipelines/install-pcf/openstack/tasks/boot-opsman.sh
 
-
