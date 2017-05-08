@@ -33,7 +33,7 @@ function boot_opsman() {
 
    if [ $? == 0 ]; then
      sleep 5 # Give openstack a few moments to get the VM organized.
-     FLOAT=$( openstack floating ip create $EXTERNAL_NET | \
+     FLOAT=$( openstack floating ip create $EXTERNAL_NETWORK | \
               grep floating_ip_address | awk '{print $4}' )
      echo "Adding floating IP: $FLOAT to $IMAGE_NAME"
      openstack server add floating ip $IMAGE_NAME $FLOAT
