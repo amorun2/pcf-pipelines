@@ -49,3 +49,7 @@ pivnet_api_token: tgJX_jBgf_V1jTSgb9Y9
 
 ## What to name the image in glance
 ops_mgr_img_name: pcf-openstack
+ops_mgr_sec_grp: cf
+ops_mgr_key_name: pcf-admin
+ops_mgr_flv_name: m1.xlarge
+ops_mgr_srv_name: ops-manager-00

@@ -86,7 +86,7 @@ run:
 
     function create_secgroup() {
     
-       openstack security group list | grep -w ' cf '
+       openstack security group list | grep -w " $SECGROUP_NAME "
        if [ $? != 0 ]; then
          echo -n "Creating CF security group: "
     

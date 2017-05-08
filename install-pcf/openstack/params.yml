@@ -31,3 +31,7 @@ pivnet_api_token:
 
 ## What to name the image in glance
 ops_mgr_img_name:
+ops_mgr_sec_grp:
+ops_mgr_key_name:
+ops_mgr_flv_name:
+ops_mgr_srv_name:

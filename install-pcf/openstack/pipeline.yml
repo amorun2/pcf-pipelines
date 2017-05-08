@@ -11,6 +11,7 @@ resources:
   source:
     uri: http://github.com/pivotalservices/pcf-pipelines.git
     branch: master
+
 - name: pivnet-opsman-product
   type: pivnet
   source:
@@ -95,3 +96,9 @@ jobs:
         OS_USERNAME: {{os_username}}
         PRE_OS_CACERT: {{pre_os_cacert}}
         OS_INTERFACE: {{os_interface}}
+        OPS_MGR_IMG_NAME: {{ops_mgr_img_name}}
+        OPS_MGR_SEC_GRP: {{ops_mgr_sec_grp}}
+        OPS_MGR_KEY_NAME: {{ops_mgr_key_name}}
+        OPS_MGR_FLV_NAME: {{ops_mgr_flv_name}}
+        OPS_MGR_SRV_NAME: {{ops_mgr_srv_name}}
+
