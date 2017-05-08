@@ -35,10 +35,10 @@ function boot_opsman() {
      FLOAT=$( openstack floating ip create $EXTERNAL_NETWORK | \
               grep floating_ip_address | awk '{print $4}' )
      echo "Adding floating IP: $FLOAT to $IMAGE_NAME"
-     openstack server add floating ip $IMAGE_NAME $FLOAT
+     openstack server add floating ip $OPS_MGR_SRV_NAME $FLOAT
    else
-     echo "Failed to boot $IMG_NAME"
-     openstack server show $IMG_NAME
+     echo "Failed to boot $OPS_MGR_SRV_NAME"
+     openstack server show $OPS_MGR_SRV_NAME
    fi
 }
 
