@@ -24,12 +24,11 @@ function boot_opsman() {
     exit 1
   fi
 
-  # Check for the correct flavor
-
-  echo "Booting OpsMan: $IMG_NAME"
+  echo "Booting OpsMan: $OPS_MGR_SRV_NAME"
   openstack server create --image $IMG_NAME \
-    --flavor m1.xlarge --key-name concourse-key --security-group concourse_sec \
-    --nic net-id=infra ops-manager
+    --flavor $OPS_MGR_FLV_NAME --key-name $OPS_MGR_KEY_NAME \
+    --security-group $OPS_MGR_SEC_GRP \
+    --nic net-id=$INFRA_NETWORK $OPS_MGR_SRV_NAME
 
    if [ $? == 0 ]; then
      sleep 5 # Give openstack a few moments to get the VM organized.
