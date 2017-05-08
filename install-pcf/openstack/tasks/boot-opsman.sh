@@ -31,6 +31,16 @@ function boot_opsman() {
     --flavor m1.xlarge --key-name concourse-key --security-group concourse_sec \
     --nic net-id=infra ops-manager
 
+   if [ $? == 0 ]; then
+     sleep 5 # Give openstack a few moments to get the VM organized.
+     FLOAT=$( openstack floating ip create $EXTERNAL_NET | \
+              grep floating_ip_address | awk '{print $4}' )
+     echo "Adding floating IP: $FLOAT to $IMAGE_NAME"
+     openstack server add floating ip $IMAGE_NAME $FLOAT
+   else
+     echo "Failed to boot $IMG_NAME"
+     openstack server show $IMG_NAME
+   fi
 }
 
 boot_opsman
