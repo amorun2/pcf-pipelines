@@ -85,6 +85,7 @@ jobs:
     - task: boot-opsman
       file: pcf-pipelines/install-pcf/openstack/tasks/boot-opsman.yml
       params:
+        EXTERNAL_NETWORK: {{external_network}}
         INFRA_NETWORK: {{infra_network}}
         OS_PROJECT_ID: {{os_project_id}}
         OS_REGION_NAME: {{os_region_name}}
