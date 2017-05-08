@@ -36,10 +36,13 @@ function boot_opsman() {
               grep floating_ip_address | awk '{print $4}' )
      echo "Adding floating IP: $FLOAT to $OPS_MGR_SRV_NAME"
      openstack server add floating ip $OPS_MGR_SRV_NAME $FLOAT
+
+     echo "Opsman URL: http://$FLOAT/"
    else
      echo "Failed to boot $OPS_MGR_SRV_NAME"
      openstack server show $OPS_MGR_SRV_NAME
    fi
+
 }
 
 boot_opsman
