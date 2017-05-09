@@ -31,7 +31,8 @@ function boot_opsman() {
     --nic net-id=$INFRA_NETWORK $OPS_MGR_SRV_NAME
 
    if [ $? == 0 ]; then
-     sleep 5 # Give openstack a few moments to get the VM organized.
+     echo "Sleeping 20 seconds for the VM to boot before adding a floating IP."
+     sleep 20 # Give openstack a few moments to get the VM organized.
      FLOAT=$( openstack floating ip create $EXTERNAL_NETWORK | \
               grep floating_ip_address | awk '{print $4}' )
      echo "Adding floating IP: $FLOAT to $OPS_MGR_SRV_NAME"
