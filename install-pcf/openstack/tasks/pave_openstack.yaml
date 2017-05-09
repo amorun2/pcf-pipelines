@@ -18,6 +18,7 @@ params:
   SERVICESOD_SUBNET:
   ADMIN_ROUTER:
   BACKEND_ROUTER:
+  SECGROUP_NAME:
 
   OS_PROJECT_ID:
   OS_REGION_NAME:
@@ -85,12 +86,14 @@ run:
     }
 
     function create_secgroup() {
+
+       local SECGROUP_NAME=$1
     
        openstack security group list | grep -w " $SECGROUP_NAME "
        if [ $? != 0 ]; then
          echo -n "Creating CF security group: "
     
-         openstack security group create cf 
+         openstack security group create $SECGROUP_NAME
          check_rc $?
        
          echo -"Adding rules to security group CF"
@@ -99,18 +102,18 @@ run:
            echo -n " - adding tcp $port: "
              neutron security-group-rule-create --direction ingress \
                --ethertype IPv4 --protocol tcp --port-range-min $port \
-               --port-range-max $port cf 
+               --port-range-max $port $SECGROUP_NAME
            check_rc $?
          done
          echo -n " - adding icmp: "
          neutron security-group-rule-create --protocol icmp \
-           --direction ingress --remote-ip-prefix 0.0.0.0/0 cf 
+           --direction ingress --remote-ip-prefix 0.0.0.0/0 $SECGROUP_NAME
          check_rc $?
          for port in 68 3457; do
            echo -n " - adding udp $port: "
              neutron security-group-rule-create --direction ingress \
                --ethertype IPv4 --protocol udp --port-range-min $port \
-               --port-range-max $port cf 
+               --port-range-max $port $SECGROUP_NAME
            check_rc $?
          done
     
@@ -125,7 +128,7 @@ run:
     create_private_network $SERVICESOD_NETWORK $SERVICESOD_SUBNET
     create_admin_router $ADMIN_ROUTER
     #create_backend_router $BACKEND_ROUTER
-    create_secgroup
+    create_secgroup $SECGROUP_NAME
 
     pivnet-cli --version
     om-tool --version
