@@ -26,7 +26,7 @@ jobs:
       trigger: false
   
     - task: pave
-      file: pcf-pipelines/install-pcf/openstack/tasks/pave_openstack.yaml
+      file: pcf-pipelines/install-pcf/openstack/tasks/pave-openstack.yml
       params:
         EXTERNAL_NETWORK: {{external_network}}
         INFRA_NETWORK: {{infra_network}}
