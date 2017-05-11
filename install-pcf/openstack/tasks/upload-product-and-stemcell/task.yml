@@ -9,6 +9,16 @@ image_resource:
 params:
   PRE_OS_CACERT:
   OPS_MGR_IMG_NAME:
+  OS_PROJECT_ID:
+  OS_REGION_NAME:
+  OS_USER_DOMAIN_NAME:
+  OS_PROJECT_NAME:
+  OS_IDENTITY_API_VERSION:
+  OS_PASSWORD:
+  OS_AUTH_URL:
+  OS_USERNAME:
+  PRE_OS_CACERT:
+  OS_INTERFACE:
 
 inputs:
 - name: pivnet-opsman-product
